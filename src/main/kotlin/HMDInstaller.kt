@@ -1,10 +1,10 @@
-import backend.DeinstallationManager
+import backend.UninstallationManager
 
 object HMDInstaller {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        DeinstallationManager.startDeinstallation()
+        UninstallationManager.startUninstallation()
     }
 
 }

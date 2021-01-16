@@ -1,7 +1,6 @@
-package backend.processes.deinstallation
+package backend.processes.uninstallation
 
 import backend.Process
-import mslinks.ShellLink
 import java.io.File
 
 class DeleteStartMenuShortcutProcess : Process() {

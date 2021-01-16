@@ -1,12 +1,7 @@
-package backend.processes.deinstallation
+package backend.processes.uninstallation
 
 import backend.Process
 import java.io.File
-import java.io.FileInputStream
-import java.util.zip.ZipInputStream
-import java.io.IOException
-import java.util.zip.ZipEntry
-import java.io.FileOutputStream
 
 
 class DeleteFilesProcess : Process() {
