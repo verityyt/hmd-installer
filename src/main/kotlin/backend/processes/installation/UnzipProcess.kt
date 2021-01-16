@@ -32,11 +32,11 @@ class UnzipProcess : Process() {
             while (zipEntry != null) {
                 val newFile = newFile(destDir, zipEntry)
                 if (zipEntry.isDirectory) {
-                    if (!newFile!!.isDirectory && !newFile.mkdirs()) {
+                    if (!newFile.isDirectory && !newFile.mkdirs()) {
                         throw Exception("Failed to create directory $newFile")
                     }
                 } else {
-                    val parent = newFile!!.parentFile
+                    val parent = newFile.parentFile
                     if (!parent.isDirectory && !parent.mkdirs()) {
                         throw Exception("Failed to create directory $parent")
                     }
