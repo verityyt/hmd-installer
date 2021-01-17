@@ -1,10 +1,13 @@
 package frontend
 
 import HMDInstaller
+import frontend.listener.KeyListener
 import frontend.listener.MouseListener
 import frontend.listener.MouseMotionListener
 import frontend.screen.LandingScreen
+import frontend.screen.PropertiesScreen
 import frontend.utils.CustomFont
+import frontend.utils.Screen
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
@@ -20,7 +23,7 @@ object Window {
     lateinit var window: JFrame
     lateinit var component: JComponent
 
-    var screen = LandingScreen()
+    var screen: Screen = LandingScreen()
 
     fun build() {
         Thread {
@@ -73,6 +76,7 @@ object Window {
 
             window.addMouseListener(MouseListener())
             window.addMouseMotionListener(MouseMotionListener())
+            window.addKeyListener(KeyListener())
 
             window.isUndecorated = false
             window.setSize(800, 775)
