@@ -1,8 +1,11 @@
 package frontend
 
 import HMDInstaller
+import frontend.listener.MouseListener
+import frontend.listener.MouseMotionListener
 import frontend.screen.LandingScreen
 import frontend.utils.CustomFont
+import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.RenderingHints
@@ -54,6 +57,9 @@ object Window {
                         RenderingHints.VALUE_FRACTIONALMETRICS_ON
                     )
 
+                    g.color = Color.white
+                    g.drawRect(0,0,800,775)
+
                     screen.paint(g, g2, this)
 
                 }
@@ -64,6 +70,9 @@ object Window {
             window.add(component)
 
             window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
+
+            window.addMouseListener(MouseListener())
+            window.addMouseMotionListener(MouseMotionListener())
 
             window.isUndecorated = false
             window.setSize(800, 775)
