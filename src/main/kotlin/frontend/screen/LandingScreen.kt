@@ -1,9 +1,10 @@
 package frontend.screen
 
-import frontend.Screen
+import frontend.utils.Screen
+import frontend.Window
 import frontend.utils.CustomFont
 import frontend.widgets.ButtonWidget
-import frontend.widgets.Widget
+import frontend.utils.Widget
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
@@ -13,7 +14,9 @@ import javax.imageio.ImageIO
 
 class LandingScreen : Screen() {
 
-    private val installButton = ButtonWidget(230, 660, 350, 60, 25, "Install", 3, 30, true) { }
+    private val installButton = ButtonWidget(230, 660, 350, 60, 25, "Install", 3, 30, true) {
+        Window.screen = PropertiesScreen()
+    }
 
     private val uninstallButton = ButtonWidget(230, 590, 350, 60, 25, "Uninstall", 3, 30, false) { }
 
