@@ -1,14 +1,15 @@
-package frontend
+package frontend.widgets
 
-import frontend.widgets.Widget
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.image.ImageObserver
 
-abstract class Screen {
-
-    abstract val widgets: List<Widget>
+abstract class Widget {
 
     abstract fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver)
+
+    abstract fun click(x: Int, y: Int)
+
+    abstract fun hover(x: Int, y: Int)
 
 }
