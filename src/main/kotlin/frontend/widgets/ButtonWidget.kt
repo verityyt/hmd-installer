@@ -1,7 +1,9 @@
 package frontend.widgets
 
+import frontend.utils.Widget
 import frontend.utils.CustomFont
 import java.awt.*
+import java.awt.event.KeyEvent
 import java.awt.geom.RoundRectangle2D
 import java.awt.image.ImageObserver
 
@@ -98,5 +100,7 @@ class ButtonWidget(
     override fun hover(x: Int, y: Int) {
         hovered = (x > this.x && x < (this.x + this.w) && y > this.y && this.y < (this.y + h))
     }
+
+    override fun type(e: KeyEvent) { }
 
 }

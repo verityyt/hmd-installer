@@ -1,6 +1,5 @@
-package frontend
+package frontend.utils
 
-import frontend.widgets.Widget
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.image.ImageObserver
