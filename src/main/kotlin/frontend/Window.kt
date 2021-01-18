@@ -84,7 +84,7 @@ object Window {
             window.setSize(800, 775)
             window.isResizable = false
             window.isAlwaysOnTop = false
-            window.title = "Hardware Monitoring Display | v${HMDInstaller.version} Installer"
+            window.title = "Hardware Monitoring Display | Installer"
             window.iconImage = ImageIO.read(File("files/images/WindowIcon.png"))
 
             window.isVisible = true

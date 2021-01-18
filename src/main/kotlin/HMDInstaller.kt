@@ -1,12 +1,11 @@
-import frontend.Window
+import backend.InstallationManager
 
 object HMDInstaller {
 
-    val version = "2.1.1"
-
     @JvmStatic
     fun main(args: Array<String>) {
-        Window.build()
+        /*Window.build()*/
+        InstallationManager.startInstallation()
     }
 
 }

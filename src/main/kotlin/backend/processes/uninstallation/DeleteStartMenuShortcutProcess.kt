@@ -13,9 +13,7 @@ class DeleteStartMenuShortcutProcess : Process() {
     override fun run() {
         println("[DeleteStartMenuShortcutProcess] Testing process...")
         val testRes = test
-        if(!testRes) {
-            throw Exception("Testing of 'DeleteStartMenuShortcutProcess' was not successful!")
-        }else {
+        if(testRes) {
             lnk.deleteRecursively()
         }
 

@@ -12,9 +12,7 @@ class DeleteDesktopShortcutProcess : Process() {
     override fun run() {
         println("[DeleteDesktopShortcutProcess] Testing process...")
         val testRes = test
-        if(!testRes) {
-            throw Exception("Testing of 'DeleteDesktopShortcutProcess' was not successful!")
-        }else {
+        if(testRes) {
             lnk.deleteRecursively()
         }
 
