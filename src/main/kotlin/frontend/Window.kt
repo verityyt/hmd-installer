@@ -24,7 +24,7 @@ object Window {
     lateinit var component: JComponent
 
     var screen: Screen = LandingScreen()
-    var nextScreen: Screen = PropertiesScreen()
+    var nextScreen: Screen? = PropertiesScreen()
 
     fun build() {
         Thread {
@@ -65,7 +65,7 @@ object Window {
                     g.drawRect(0,0,800,775)
 
                     screen.paint(g, g2, this)
-                    nextScreen.paint(g, g2, this)
+                    nextScreen?.paint(g, g2, this)
 
                 }
 

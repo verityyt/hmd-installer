@@ -1,17 +1,16 @@
 package frontend.screen
 
-import frontend.utils.Screen
 import frontend.Window
 import frontend.utils.CustomFont
-import frontend.widgets.ButtonWidget
+import frontend.utils.Screen
 import frontend.utils.Widget
+import frontend.widgets.ButtonWidget
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.image.ImageObserver
 import java.io.File
 import javax.imageio.ImageIO
-import javax.swing.plaf.synth.SynthRadioButtonMenuItemUI
 
 class LandingScreen : Screen() {
 
@@ -48,45 +47,49 @@ class LandingScreen : Screen() {
     }
 
     private fun animate(speed: Long, tick: Int) {
-
         Thread {
-            while(true) {
-                if(Window.nextScreen.originX != (-799 + tick)) {
-                    Thread.sleep(speed)
-                    originX-=tick
-                    installButton.x-=tick
-                    uninstallButton.x-=tick
-                }else {
-                    Thread.currentThread().interrupt()
-                }
-            }
-        }.start()
-
-        Thread {
-            while(true) {
-                if(Window.nextScreen is PropertiesScreen) {
-                    if(Window.nextScreen.originX != (0 + tick)) {
+            while (true) {
+                if (Window.nextScreen != null) {
+                    if (Window.nextScreen!!.originX != (-799 + tick)) {
                         Thread.sleep(speed)
-
-                        val next = Window.nextScreen as PropertiesScreen
-
-                        next.originX-=tick
-                        next.desktopLnk.x-=tick
-                        next.startLnk.x-=tick
-                        next.dirText.x-=tick
-                        next.lightLnk.x-=tick
-                        next.darkLnk.x-=tick
-                        next.dri1FilText.x-=tick
-                        next.dri2FilText.x-=tick
-                        next.dri1NaText.x-=tick
-                        next.dri2NaText.x-=tick
-                    }else {
+                        originX -= tick
+                        installButton.x -= tick
+                        uninstallButton.x -= tick
+                    } else {
                         Thread.currentThread().interrupt()
                     }
                 }
             }
         }.start()
 
+        Thread {
+            while (true) {
+                if (Window.nextScreen != null) {
+                    if (Window.nextScreen is PropertiesScreen) {
+                        if (Window.nextScreen!!.originX != (0 + tick)) {
+                            Thread.sleep(speed)
+
+                            val next = Window.nextScreen as PropertiesScreen
+
+                            next.originX -= tick
+                            next.desktopLnk.x -= tick
+                            next.startLnk.x -= tick
+                            next.dirText.x -= tick
+                            next.lightLnk.x -= tick
+                            next.darkLnk.x -= tick
+                            next.dri1FilText.x -= tick
+                            next.dri2FilText.x -= tick
+                            next.dri1NaText.x -= tick
+                            next.dri2NaText.x -= tick
+                        } else {
+                            Window.screen = Window.nextScreen!!
+                            Window.nextScreen = null
+                            Thread.currentThread().interrupt()
+                        }
+                    }
+                }
+            }
+        }.start()
     }
 
 }
