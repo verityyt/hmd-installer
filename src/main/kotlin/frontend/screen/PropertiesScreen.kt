@@ -14,17 +14,19 @@ import javax.imageio.ImageIO
 
 class PropertiesScreen : Screen() {
 
-    private val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3, true)
-    private val startLnk = CheckboxWidget(370, 172, 30, 10, 3, true)
-    private val dirText =
-        TextFieldWidget(370, 225, 400, 30, 10, 3, "C:\\Program Files (x86)\\Hardware Monitoring Display")
+    override var originX: Int = 800
 
-    private val lightLnk = CheckboxWidget(233, 377, 30, 10, 3, true)
-    private val darkLnk = CheckboxWidget(357, 377, 30, 10, 3)
-    private val dri1FilText = TextFieldWidget(233, 433, 158, 30, 10, 3) // Drive 1 Filter
-    private val dri2FilText = TextFieldWidget(233, 483, 158, 30, 10, 3) // Drive 2 Filter
-    private val dri1NaText = TextFieldWidget(233, 533, 158, 30, 10, 3) // Drive 1 Name
-    private val dri2NaText = TextFieldWidget(233, 583, 158, 30, 10, 3) // Drive 2 Name
+    val desktopLnk = CheckboxWidget(originX + 370, 122, 30, 10, 3, true)
+    val startLnk = CheckboxWidget(originX + 370, 172, 30, 10, 3, true)
+    val dirText =
+        TextFieldWidget(originX + 370, 225, 400, 30, 10, 3, "C:\\Program Files (x86)\\Hardware Monitoring Display")
+
+    val lightLnk = CheckboxWidget(originX + 233, 377, 30, 10, 3, true)
+    val darkLnk = CheckboxWidget(originX + 357, 377, 30, 10, 3)
+    val dri1FilText = TextFieldWidget(originX + 233, 433, 158, 30, 10, 3) // Drive 1 Filter
+    val dri2FilText = TextFieldWidget(originX + 233, 483, 158, 30, 10, 3) // Drive 2 Filter
+    val dri1NaText = TextFieldWidget(originX + 233, 533, 158, 30, 10, 3) // Drive 1 Name
+    val dri2NaText = TextFieldWidget(originX + 233, 583, 158, 30, 10, 3) // Drive 2 Name
 
     override val widgets: List<Widget> =
         listOf(desktopLnk, startLnk, lightLnk, darkLnk, dirText, dri1FilText, dri2FilText, dri1NaText, dri2NaText)
@@ -40,70 +42,70 @@ class PropertiesScreen : Screen() {
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(36f)
-        g.drawString("Installation properties", 210, 60)
-        g.fillRect(180, 75, 400, 3)
+        g.drawString("Installation properties", originX + 210, 60)
+        g.fillRect(originX + 180, 75, 400, 3)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Create desktop shortcut", 30, 145)
+        g.drawString("Create desktop shortcut", originX + 30, 145)
         desktopLnk.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Create start menu entry", 30, 195)
+        g.drawString("Create start menu entry", originX + 30, 195)
         startLnk.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Installation directory", 30, 245)
+        g.drawString("Installation directory", originX + 30, 245)
         dirText.paint(g, g2, observer)
 
         /* Configuration */
 
         g.font = CustomFont.regular?.deriveFont(36f)
-        g.drawString("Configuration", 275, 320)
-        g.fillRect(180, 335, 400, 3)
+        g.drawString("Configuration", originX + 275, 320)
+        g.fillRect(originX + 180, 335, 400, 3)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Theme", 30, 400)
+        g.drawString("Theme", originX + 30, 400)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Light", 170, 400)
+        g.drawString("Light", originX + 170, 400)
         lightLnk.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Dark", 300, 400)
+        g.drawString("Dark", originX + 300, 400)
         darkLnk.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Drive #1 Filter", 30, 455)
+        g.drawString("Drive #1 Filter", originX + 30, 455)
         dri1FilText.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Drive #2 Filter", 30, 505)
+        g.drawString("Drive #2 Filter", originX + 30, 505)
         dri2FilText.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Drive #1 Name", 30, 555)
+        g.drawString("Drive #1 Name", originX + 30, 555)
         dri1NaText.paint(g, g2, observer)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
-        g.drawString("Drive #2 Name", 30, 605)
+        g.drawString("Drive #2 Name", originX + 30, 605)
         dri2NaText.paint(g, g2, observer)
 
         /* Next */
 
         if(nextHovered) {
-            g.drawImage(ImageIO.read(File("files/images/arrow_hov.png")), 675, 675, 90, 50,  observer)
+            g.drawImage(ImageIO.read(File("files/images/arrow_hov.png")), originX + 675, 675, 90, 50,  observer)
         }else {
-            g.drawImage(ImageIO.read(File("files/images/arrow.png")), 675, 675, 90, 50,  observer)
+            g.drawImage(ImageIO.read(File("files/images/arrow.png")), originX + 675, 675, 90, 50,  observer)
         }
 
     }

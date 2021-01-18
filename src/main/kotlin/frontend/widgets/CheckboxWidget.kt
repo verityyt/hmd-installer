@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent
 import java.awt.geom.RoundRectangle2D
 import java.awt.image.ImageObserver
 
-class CheckboxWidget(private val x: Int, private val y: Int, private val l: Int, private val arc: Int, private val stroke: Int, private val standard: Boolean = false) : Widget() {
+class CheckboxWidget(var x: Int, private val y: Int, private val l: Int, private val arc: Int, private val stroke: Int, private val standard: Boolean = false) : Widget() {
 
     var checked = false
     var link: CheckboxWidget? = null
