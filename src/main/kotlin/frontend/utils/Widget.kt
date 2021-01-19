@@ -7,6 +7,8 @@ import java.awt.image.ImageObserver
 
 abstract class Widget {
 
+    abstract var x: Int
+
     abstract fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver)
 
     abstract fun click(x: Int, y: Int)

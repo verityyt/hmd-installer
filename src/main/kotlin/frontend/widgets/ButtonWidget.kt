@@ -8,7 +8,7 @@ import java.awt.geom.RoundRectangle2D
 import java.awt.image.ImageObserver
 
 class ButtonWidget(
-    var x: Int,
+    override var x: Int,
     private val y: Int,
     private val w: Int,
     private val h: Int,

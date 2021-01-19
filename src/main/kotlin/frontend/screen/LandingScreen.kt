@@ -1,6 +1,7 @@
 package frontend.screen
 
 import frontend.Window
+import frontend.transitions.EaseScreenSwitchTransition
 import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
@@ -17,7 +18,7 @@ class LandingScreen : Screen() {
     override var originX: Int = 0
 
     private var installButton = ButtonWidget(originX + 230, 660, 350, 60, 25, "Install", 3, 30, true) {
-        animate()
+        EaseScreenSwitchTransition.start()
     }
 
     private var uninstallButton = ButtonWidget(originX + 230, 590, 350, 60, 25, "Uninstall", 3, 30, false) { }
@@ -43,98 +44,6 @@ class LandingScreen : Screen() {
         installButton.paint(g, g2, observer)
         uninstallButton.paint(g, g2, observer)
 
-    }
-
-    private fun animate() {
-        val tick = 5
-        var speed: Long = 1
-
-        Thread {
-            while (true) {
-                if (Window.nextScreen != null) {
-                    if (Window.nextScreen!!.originX != (-799 + tick)) {
-                        Thread.sleep(speed)
-
-                        originX -= tick
-                        installButton.x -= tick
-                        uninstallButton.x -= tick
-
-                        if (Window.nextScreen != null && Window.nextScreen!!.originX >= 0) {
-                            speed = 6
-                        }
-
-                        if (Window.nextScreen != null && Window.nextScreen!!.originX >= -25) {
-                            speed = 2
-                        }
-
-                        if (Window.nextScreen != null && Window.nextScreen!!.originX >= -50) {
-                            speed = 1
-                        }
-
-                        if (Window.nextScreen != null && Window.nextScreen!!.originX <= -725) {
-                            speed = 2
-                        }
-
-                        if (Window.nextScreen != null && Window.nextScreen!!.originX <= -775) {
-                            speed = 6
-                        }
-
-                    } else {
-                        Thread.currentThread().interrupt()
-                    }
-                }
-            }
-        }.start()
-
-        Thread {
-            while (true) {
-                if (Window.nextScreen != null) {
-                    if (Window.nextScreen is PropertiesScreen) {
-                        if (Window.nextScreen!!.originX != (0 + tick)) {
-                            Thread.sleep(speed)
-
-                            val next = Window.nextScreen as PropertiesScreen
-
-                            next.originX -= tick
-                            next.desktopLnk.x -= tick
-                            next.startLnk.x -= tick
-                            next.dirText.x -= tick
-                            next.lightLnk.x -= tick
-                            next.darkLnk.x -= tick
-                            next.dri1FilText.x -= tick
-                            next.dri2FilText.x -= tick
-                            next.dri1NaText.x -= tick
-                            next.dri2NaText.x -= tick
-
-                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 800) {
-                                speed = 6
-                            }
-
-                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 750) {
-                                speed = 2
-                            }
-
-                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 725) {
-                                speed = 1
-                            }
-
-                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 25) {
-                                speed = 2
-                            }
-
-                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 75) {
-                                speed = 6
-                            }
-
-                        } else {
-                            Window.screen = Window.nextScreen!!
-                            Window.nextScreen = null
-                            Thread.currentThread().interrupt()
-                        }
-                    }
-                }
-            }
-        }.start()
     }
 
 }
