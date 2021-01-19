@@ -1,6 +1,5 @@
 package frontend.screen
 
-import frontend.Window
 import frontend.transitions.EaseScreenSwitchTransition
 import frontend.utils.CustomFont
 import frontend.utils.Screen
@@ -17,11 +16,11 @@ class LandingScreen : Screen() {
 
     override var originX: Int = 0
 
-    private var installButton = ButtonWidget(originX + 230, 660, 350, 60, 25, "Install", 3, 30, true) {
+    private var installButton = ButtonWidget(originX + 230, 660, 350, 60, 25, "Install", 3, 30, this, true) {
         EaseScreenSwitchTransition.start()
     }
 
-    private var uninstallButton = ButtonWidget(originX + 230, 590, 350, 60, 25, "Uninstall", 3, 30, false) { }
+    private var uninstallButton = ButtonWidget(originX + 230, 590, 350, 60, 25, "Uninstall", 3, 30, this, false) { }
 
     override val widgets: List<Widget> = listOf(installButton, uninstallButton)
 

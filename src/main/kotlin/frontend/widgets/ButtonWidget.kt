@@ -2,6 +2,7 @@ package frontend.widgets
 
 import frontend.utils.Widget
 import frontend.utils.CustomFont
+import frontend.utils.Screen
 import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.geom.RoundRectangle2D
@@ -16,6 +17,7 @@ class ButtonWidget(
     private val text: String,
     private val stroke: Int,
     private val fontSize: Int,
+    val parent: Screen,
     private val available: Boolean,
     private val action: () -> Unit
 ) : Widget() {
@@ -28,7 +30,7 @@ class ButtonWidget(
             g2.stroke = BasicStroke(stroke.toFloat())
             g2.draw(
                 RoundRectangle2D.Float(
-                    x.toFloat(),
+                    parent.originX + x.toFloat(),
                     y.toFloat(),
                     w.toFloat(),
                     h.toFloat(),
@@ -39,7 +41,7 @@ class ButtonWidget(
 
             CustomFont.drawCentredString(
                 g,
-                Rectangle(x, y, w, h),
+                Rectangle(parent.originX + x, y, w, h),
                 text,
                 Color.decode("#BFBFBF"),
                 CustomFont.regular!!.deriveFont(fontSize.toFloat())
@@ -50,7 +52,7 @@ class ButtonWidget(
                 g2.stroke = BasicStroke(stroke.toFloat())
                 g2.fill(
                     RoundRectangle2D.Float(
-                        x.toFloat(),
+                        parent.originX + x.toFloat(),
                         y.toFloat(),
                         w.toFloat(),
                         h.toFloat(),
@@ -61,7 +63,7 @@ class ButtonWidget(
 
                 CustomFont.drawCentredString(
                     g,
-                    Rectangle(x, y, w, h),
+                    Rectangle(parent.originX + x, y, w, h),
                     text,
                     Color.white,
                     CustomFont.regular!!.deriveFont(fontSize.toFloat())
@@ -71,7 +73,7 @@ class ButtonWidget(
                 g2.stroke = BasicStroke(stroke.toFloat())
                 g2.draw(
                     RoundRectangle2D.Float(
-                        x.toFloat(),
+                        parent.originX + x.toFloat(),
                         y.toFloat(),
                         w.toFloat(),
                         h.toFloat(),
@@ -82,7 +84,7 @@ class ButtonWidget(
 
                 CustomFont.drawCentredString(
                     g,
-                    Rectangle(x, y, w, h),
+                    Rectangle(parent.originX + x, y, w, h),
                     text,
                     Color.black,
                     CustomFont.regular!!.deriveFont(fontSize.toFloat())
@@ -92,13 +94,13 @@ class ButtonWidget(
     }
 
     override fun click(x: Int, y: Int) {
-        if (x > this.x && x < (this.x + this.w) && y > this.y && this.y < (this.y + h) && available) {
+        if (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && this.y < (this.y + h) && available) {
             action()
         }
     }
 
     override fun hover(x: Int, y: Int) {
-        hovered = (x > this.x && x < (this.x + this.w) && y > this.y && this.y < (this.y + h))
+        hovered = (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && this.y < (this.y + h))
     }
 
     override fun type(e: KeyEvent) { }

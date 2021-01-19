@@ -16,20 +16,20 @@ class PropertiesScreen : Screen() {
 
     override var originX: Int = 800
 
-    val desktopLnk = CheckboxWidget(originX + 370, 122, 30, 10, 3, true)
-    val startLnk = CheckboxWidget(originX + 370, 172, 30, 10, 3, true)
+    val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3,this, true)
+    val startLnk = CheckboxWidget(370, 172, 30, 10, 3, this, true)
     val dirText =
-        TextFieldWidget(originX + 370, 225, 400, 30, 10, 3, "C:\\Program Files (x86)\\Hardware Monitoring Display")
+        TextFieldWidget(370, 225, 400, 30, 10, 3, this, "C:\\Program Files (x86)\\Hardware Monitoring Display")
 
-    val lightLnk = CheckboxWidget(originX + 233, 377, 30, 10, 3, true)
-    val darkLnk = CheckboxWidget(originX + 357, 377, 30, 10, 3)
-    val dri1FilText = TextFieldWidget(originX + 233, 433, 158, 30, 10, 3) // Drive 1 Filter
-    val dri2FilText = TextFieldWidget(originX + 233, 483, 158, 30, 10, 3) // Drive 2 Filter
-    val dri1NaText = TextFieldWidget(originX + 233, 533, 158, 30, 10, 3) // Drive 1 Name
-    val dri2NaText = TextFieldWidget(originX + 233, 583, 158, 30, 10, 3) // Drive 2 Name
+    val lightLnk = CheckboxWidget(233, 377, 30, 10, 3,this, true)
+    val darkLnk = CheckboxWidget(357, 377, 30, 10, 3, this)
+    val dri1FilText = TextFieldWidget(233, 433, 158, 30, 10, 3, this) // Drive 1 Filter
+    val dri2FilText = TextFieldWidget(233, 483, 158, 30, 10, 3, this) // Drive 2 Filter
+    val dri1NaText = TextFieldWidget(233, 533, 158, 30, 10, 3, this) // Drive 1 Name
+    val dri2NaText = TextFieldWidget(233, 583, 158, 30, 10, 3, this) // Drive 2 Name
 
     override val widgets: List<Widget> =
-        listOf(desktopLnk, startLnk, lightLnk, darkLnk, dirText, dri1FilText, dri2FilText, dri1NaText, dri2NaText)
+        listOf(desktopLnk, startLnk, dirText, lightLnk, darkLnk, dri1FilText, dri2FilText, dri1NaText, dri2NaText)
 
     var nextHovered = false
 

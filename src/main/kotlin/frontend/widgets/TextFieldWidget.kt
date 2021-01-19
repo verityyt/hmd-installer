@@ -1,6 +1,7 @@
 package frontend.widgets
 
 import frontend.utils.CustomFont
+import frontend.utils.Screen
 import frontend.utils.Widget
 import java.awt.BasicStroke
 import java.awt.Color
@@ -17,6 +18,7 @@ class TextFieldWidget(
     private val h: Int,
     private val arc: Int,
     private val stroke: Int,
+    val parent: Screen,
     private val standard: String = ""
 ) : Widget() {
 
@@ -37,7 +39,7 @@ class TextFieldWidget(
         g2.stroke = BasicStroke(stroke.toFloat())
         g2.draw(
             RoundRectangle2D.Float(
-                x.toFloat(),
+                parent.originX + x.toFloat(),
                 y.toFloat(),
                 w.toFloat(),
                 h.toFloat(),
@@ -48,12 +50,12 @@ class TextFieldWidget(
 
         g.font = CustomFont.light?.deriveFont(16f)
         g.color = Color.black
-        g.drawString(text, x + 5, y + 21)
+        g.drawString(text, parent.originX + x + 5, y + 21)
 
     }
 
     override fun click(x: Int, y: Int) {
-        focused = (x > this.x && x < (this.x + this.w) && y > this.y && y < (this.y + this.h + 10))
+        focused = (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + this.h + 10))
     }
 
     override fun hover(x: Int, y: Int) {}
