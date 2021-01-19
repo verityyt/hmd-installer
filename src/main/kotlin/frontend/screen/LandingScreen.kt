@@ -17,8 +17,7 @@ class LandingScreen : Screen() {
     override var originX: Int = 0
 
     private var installButton = ButtonWidget(originX + 230, 660, 350, 60, 25, "Install", 3, 30, true) {
-        /*Window.screen = PropertiesScreen()*/
-        animate(1, 5)
+        animate()
     }
 
     private var uninstallButton = ButtonWidget(originX + 230, 590, 350, 60, 25, "Uninstall", 3, 30, false) { }
@@ -46,15 +45,40 @@ class LandingScreen : Screen() {
 
     }
 
-    private fun animate(speed: Long, tick: Int) {
+    private fun animate() {
+        val tick = 5
+        var speed: Long = 1
+
         Thread {
             while (true) {
                 if (Window.nextScreen != null) {
                     if (Window.nextScreen!!.originX != (-799 + tick)) {
                         Thread.sleep(speed)
+
                         originX -= tick
                         installButton.x -= tick
                         uninstallButton.x -= tick
+
+                        if (Window.nextScreen != null && Window.nextScreen!!.originX >= 0) {
+                            speed = 6
+                        }
+
+                        if (Window.nextScreen != null && Window.nextScreen!!.originX >= -25) {
+                            speed = 2
+                        }
+
+                        if (Window.nextScreen != null && Window.nextScreen!!.originX >= -50) {
+                            speed = 1
+                        }
+
+                        if (Window.nextScreen != null && Window.nextScreen!!.originX <= -725) {
+                            speed = 2
+                        }
+
+                        if (Window.nextScreen != null && Window.nextScreen!!.originX <= -775) {
+                            speed = 6
+                        }
+
                     } else {
                         Thread.currentThread().interrupt()
                     }
@@ -81,6 +105,27 @@ class LandingScreen : Screen() {
                             next.dri2FilText.x -= tick
                             next.dri1NaText.x -= tick
                             next.dri2NaText.x -= tick
+
+                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 800) {
+                                speed = 6
+                            }
+
+                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 750) {
+                                speed = 2
+                            }
+
+                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 725) {
+                                speed = 1
+                            }
+
+                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 25) {
+                                speed = 2
+                            }
+
+                            if (Window.nextScreen != null && Window.nextScreen!!.originX <= 75) {
+                                speed = 6
+                            }
+
                         } else {
                             Window.screen = Window.nextScreen!!
                             Window.nextScreen = null

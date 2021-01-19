@@ -1,11 +1,11 @@
-import backend.InstallationManager
+import frontend.Window
 
 object HMDInstaller {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        /*Window.build()*/
-        InstallationManager.startInstallation()
+        Window.build()
+        /*InstallationManager.startInstallation()*/
     }
 
 }
