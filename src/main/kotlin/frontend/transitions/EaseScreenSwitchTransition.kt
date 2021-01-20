@@ -1,16 +1,18 @@
 package frontend.transitions
 
 import frontend.Window
-import frontend.screen.PropertiesScreen
+import frontend.utils.Screen
 
-object EaseScreenSwitchTransition : Transition() {
+class EaseScreenSwitchTransition(private val newNextScreen: Screen?) : Transition() {
+
+    private var finished = false
 
     override fun start() {
         val tick = 5
         var speed: Long = 1
 
         Thread {
-            while (true) {
+            while (!finished) {
                 if (Window.nextScreen != null) {
                     if (Window.nextScreen!!.originX != (-799 + tick)) {
                         Thread.sleep(speed)
@@ -49,9 +51,8 @@ object EaseScreenSwitchTransition : Transition() {
         }.start()
 
         Thread {
-            while (true) {
+            while (!finished) {
                 if (Window.nextScreen != null) {
-                    if (Window.nextScreen is PropertiesScreen) {
                         if (Window.nextScreen!!.originX != (0 + tick)) {
                             Thread.sleep(speed)
 
@@ -83,10 +84,12 @@ object EaseScreenSwitchTransition : Transition() {
 
                         } else {
                             Window.screen = Window.nextScreen!!
-                            Window.nextScreen = null
+                            if(newNextScreen != null) {
+                                Window.nextScreen = newNextScreen
+                            }
+                            finished = true
                             Thread.currentThread().interrupt()
                         }
-                    }
                 }
             }
         }.start()
