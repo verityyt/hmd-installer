@@ -16,6 +16,8 @@ class PropertiesScreen : Screen() {
 
     override var originX: Int = 800
 
+    var nextHovered = false
+
     val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3,this, true)
     val startLnk = CheckboxWidget(370, 172, 30, 10, 3, this, true)
     val dirText =
@@ -30,8 +32,6 @@ class PropertiesScreen : Screen() {
 
     override val widgets: List<Widget> =
         listOf(desktopLnk, startLnk, dirText, lightLnk, darkLnk, dri1FilText, dri2FilText, dri1NaText, dri2NaText)
-
-    var nextHovered = false
 
     override fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver) {
 
