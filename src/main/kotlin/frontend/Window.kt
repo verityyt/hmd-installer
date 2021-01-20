@@ -1,6 +1,5 @@
 package frontend
 
-import HMDInstaller
 import frontend.listener.KeyListener
 import frontend.listener.MouseListener
 import frontend.listener.MouseMotionListener
@@ -61,8 +60,10 @@ object Window {
                         RenderingHints.VALUE_FRACTIONALMETRICS_ON
                     )
 
-                    g.color = Color.white
-                    g.drawRect(0,0,800,775)
+                    g.setRenderingHint(
+                        RenderingHints.KEY_STROKE_CONTROL,
+                        RenderingHints.VALUE_STROKE_PURE
+                    )
 
                     screen.paint(g, g2, this)
                     nextScreen?.paint(g, g2, this)
@@ -90,7 +91,7 @@ object Window {
             window.isVisible = true
 
             while (true) {
-                Thread.sleep(1000 /  60)
+                Thread.sleep(1000 / 60)
                 window.repaint()
             }
         }.start()
