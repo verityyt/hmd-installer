@@ -12,4 +12,6 @@ abstract class Screen {
 
     abstract fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver)
 
+    abstract fun afterSwitch()
+
 }
