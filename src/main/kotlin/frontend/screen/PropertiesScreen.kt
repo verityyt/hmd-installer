@@ -24,7 +24,7 @@ class PropertiesScreen : Screen() {
         TextFieldWidget(370, 225, 400, 30, 10, 3, this, "C:\\Program Files (x86)\\Hardware Monitoring Display")
 
     val lightLnk = CheckboxWidget(233, 377, 30, 10, 3,this, true)
-    val darkLnk = CheckboxWidget(357, 377, 30, 10, 3, this)
+    val darkLnk = CheckboxWidget(360, 377, 30, 10, 3, this)
     val dri1FilText = TextFieldWidget(233, 433, 158, 30, 10, 3, this) // Drive 1 Filter
     val dri2FilText = TextFieldWidget(233, 483, 158, 30, 10, 3, this) // Drive 2 Filter
     val dri1NaText = TextFieldWidget(233, 533, 158, 30, 10, 3, this) // Drive 1 Name

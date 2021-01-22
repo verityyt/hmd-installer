@@ -36,7 +36,7 @@ class CheckboxWidget(override var x: Int, private val y: Int, private val l: Int
         if(checked) {
             g.font = CustomFont.medium?.deriveFont(24f)
             g.color = Color.black
-            g.drawString("X", parent.originX + x + 8, y + 25)
+            g.drawString("X", parent.originX + x + 7, y + 24)
         }
 
     }
