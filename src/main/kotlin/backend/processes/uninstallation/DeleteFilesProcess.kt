@@ -8,12 +8,14 @@ class DeleteFilesProcess : Process() {
 
     val folder = File("C:\\Program Files\\Hardware Monitoring Display\\")
 
-    override val test: Boolean = folder.exists()
+    override var test: Boolean = folder.exists()
+
+    override var status: Int = 0
 
     override fun run() {
         println("[DeleteFilesProcess] Testing process...")
-        val testRes = test
-        if (!testRes) {
+        test = folder.exists()
+        if (!test) {
             throw Exception("Testing of 'DeleteFilesProcess' was not successful!")
         } else {
             folder.deleteRecursively()

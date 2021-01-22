@@ -8,19 +8,20 @@ import java.io.IOException
 import java.util.zip.ZipEntry
 import java.io.FileOutputStream
 
-
 class UnzipProcess : Process() {
 
     private val file = File("files\\current-version.zip")
 
-    override val test: Boolean = file.exists()
+    override var test: Boolean = file.exists()
+
+    override var status: Int = 0
 
     override fun run() {
         val destDir = File("C:\\Program Files\\Hardware Monitoring Display\\")
 
         println("[UnzipProcess] Testing process...")
-        val testRes = test
-        if (!testRes) {
+        test = file.exists()
+        if (!test) {
             throw Exception("Testing of 'UnzipProcess' was not successful!")
         } else {
             println("[UnzipProcess] Extracting zip file...")
@@ -56,6 +57,9 @@ class UnzipProcess : Process() {
 
         if (destDir.exists() && destDir.isDirectory) {
             println("[UnzipProcess] Zip file successfully extracted!")
+            status = 1
+        }else {
+            throw Exception("Process 'UnzipProcess' failed")
         }
 
     }

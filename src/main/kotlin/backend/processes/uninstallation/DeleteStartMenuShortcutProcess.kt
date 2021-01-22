@@ -8,12 +8,14 @@ class DeleteStartMenuShortcutProcess : Process() {
     private val win = File("${System.getProperty("user.home")}\\../../ProgramData\\Microsoft\\Windows\\")
     private val lnk = File("$win\\Start Menu\\Programs\\Hardware Monitoring Display.lnk")
 
-    override val test: Boolean = lnk.exists()
+    override var test: Boolean = lnk.exists()
+
+    override var status: Int = 0
 
     override fun run() {
         println("[DeleteStartMenuShortcutProcess] Testing process...")
-        val testRes = test
-        if(testRes) {
+        test = lnk.exists()
+        if(test) {
             lnk.deleteRecursively()
         }
 

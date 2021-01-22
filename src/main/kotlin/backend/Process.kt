@@ -2,7 +2,9 @@ package backend
 
 abstract class Process {
 
-    abstract val test: Boolean
+    abstract var test: Boolean
+
+    abstract var status: Int
 
     abstract fun run()
 

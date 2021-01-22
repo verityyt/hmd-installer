@@ -9,19 +9,23 @@ class CreateDesktopShortcutProcess : Process() {
     private val exe = File("C:\\Program Files\\Hardware Monitoring Display\\hmd.exe")
     private val lnk = File("${System.getProperty("user.home")}\\Desktop\\Hardware Monitoring Display.lnk")
 
-    override val test: Boolean = !lnk.exists()
+    override var test: Boolean = !lnk.exists()
+
+    override var status: Int = 0
 
     override fun run() {
         println("[CreateDesktopShortcutProcess] Testing process...")
-        val testRes = test
-        if(!testRes) {
+        test = !lnk.exists()
+        if(!test) {
             throw Exception("Testing of 'CreateDesktopShortcutProcess' was not successful!")
         }else {
             ShellLink.createLink(exe.absolutePath,lnk.absolutePath)
         }
 
         if(lnk.exists()) {
-            println("[CreateDesktopShortcutProcess] Lnk file successfully extracted!")
+            status = 1
+        }else {
+            throw Exception("Process 'CreateDesktopShortcutProcess' failed")
         }
     }
 

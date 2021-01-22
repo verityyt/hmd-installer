@@ -10,19 +10,24 @@ class CreateStartMenuShortcutProcess : Process() {
     private val win = File("${System.getProperty("user.home")}\\../../ProgramData\\Microsoft\\Windows\\")
     private val lnk = File("$win\\Start Menu\\Programs\\Hardware Monitoring Display.lnk")
 
-    override val test: Boolean = !lnk.exists()
+    override var test: Boolean = !lnk.exists()
+
+    override var status: Int = 0
 
     override fun run() {
         println("[CreateStartMenuShortcutProcess] Testing process...")
-        val testRes = test
-        if(!testRes) {
+        test = !lnk.exists()
+        if (!test) {
             throw Exception("Testing of 'CreateStartMenuShortcutProcess' was not successful!")
-        }else {
-            ShellLink.createLink(exe.absolutePath,lnk.absolutePath)
+        } else {
+            ShellLink.createLink(exe.absolutePath, lnk.absolutePath)
         }
 
-        if(lnk.exists()) {
+        if (lnk.exists()) {
             println("[CreateStartMenuShortcutProcess] Lnk file successfully extracted!")
+            status = 1
+        }else {
+            throw Exception("Process 'CreateStartMenuShortcutProcess' failed")
         }
     }
 

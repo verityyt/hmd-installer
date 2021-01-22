@@ -7,12 +7,14 @@ class DeleteDesktopShortcutProcess : Process() {
 
     private val lnk = File("${System.getProperty("user.home")}\\Desktop\\Hardware Monitoring Display.lnk")
 
-    override val test: Boolean = lnk.exists()
+    override var test: Boolean = lnk.exists()
+
+    override var status: Int = 0
 
     override fun run() {
         println("[DeleteDesktopShortcutProcess] Testing process...")
-        val testRes = test
-        if(testRes) {
+        test = lnk.exists()
+        if(test) {
             lnk.deleteRecursively()
         }
 
