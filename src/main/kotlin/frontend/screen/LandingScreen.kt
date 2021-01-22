@@ -45,4 +45,6 @@ class LandingScreen : Screen() {
 
     }
 
+    override fun afterSwitch() { }
+
 }

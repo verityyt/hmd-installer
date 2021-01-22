@@ -110,4 +110,6 @@ class PropertiesScreen : Screen() {
 
     }
 
+    override fun afterSwitch() { }
+
 }

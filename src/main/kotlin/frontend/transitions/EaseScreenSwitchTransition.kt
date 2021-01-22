@@ -88,6 +88,7 @@ class EaseScreenSwitchTransition(private val newNextScreen: Screen?) : Transitio
                                 Window.nextScreen = newNextScreen
                             }
                             finished = true
+                            Window.screen.afterSwitch()
                             Thread.currentThread().interrupt()
                         }
                 }
