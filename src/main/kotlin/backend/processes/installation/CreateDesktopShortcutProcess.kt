@@ -1,5 +1,6 @@
 package backend.processes.installation
 
+import backend.InstallationProperties
 import backend.Process
 import mslinks.ShellLink
 import java.io.File
@@ -14,19 +15,27 @@ class CreateDesktopShortcutProcess : Process() {
     override var status: Int = 0
 
     override fun run() {
-        println("[CreateDesktopShortcutProcess] Testing process...")
-        test = !lnk.exists()
-        if(!test) {
-            throw Exception("Testing of 'CreateDesktopShortcutProcess' was not successful!")
+
+        if(InstallationProperties.desktopLnk) {
+            println("[CreateDesktopShortcutProcess] Testing process...")
+            test = !lnk.exists()
+            if(!test) {
+                throw Exception("Testing of 'CreateDesktopShortcutProcess' was not successful!")
+            }else {
+                ShellLink.createLink(exe.absolutePath,lnk.absolutePath)
+            }
+
+            if(lnk.exists()) {
+                status = 1
+            }else {
+                throw Exception("Process 'CreateDesktopShortcutProcess' failed")
+            }
         }else {
-            ShellLink.createLink(exe.absolutePath,lnk.absolutePath)
+            println("[CreateDesktopShortcutProcess] Skipping desktop shortcut")
+            status = 1
         }
 
-        if(lnk.exists()) {
-            status = 1
-        }else {
-            throw Exception("Process 'CreateDesktopShortcutProcess' failed")
-        }
+
     }
 
 }

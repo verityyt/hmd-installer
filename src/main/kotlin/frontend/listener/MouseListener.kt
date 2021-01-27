@@ -1,9 +1,9 @@
 package frontend.listener
 
+import backend.InstallationProperties
 import frontend.Window
 import frontend.screen.PropertiesScreen
 import frontend.transitions.EaseScreenSwitchTransition
-import java.awt.Color
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 
@@ -17,7 +17,8 @@ class MouseListener : MouseListener {
 
             if(Window.screen is PropertiesScreen) {
                 if(e.x > 675 && e.x < (675 + 90) && e.y > 675 && e.y < (675 + 50 + 20)) {
-                    println("Clicked next")
+                    InstallationProperties.desktopLnk = (Window.screen as PropertiesScreen).desktopLnk.checked
+                    InstallationProperties.startLnk = (Window.screen as PropertiesScreen).startLnk.checked
                     EaseScreenSwitchTransition(null).start()
                 }
             }

@@ -1,5 +1,6 @@
 package backend.processes.installation
 
+import backend.InstallationProperties
 import backend.Process
 import mslinks.ShellLink
 import java.io.File
@@ -15,20 +16,27 @@ class CreateStartMenuShortcutProcess : Process() {
     override var status: Int = 0
 
     override fun run() {
-        println("[CreateStartMenuShortcutProcess] Testing process...")
-        test = !lnk.exists()
-        if (!test) {
-            throw Exception("Testing of 'CreateStartMenuShortcutProcess' was not successful!")
-        } else {
-            ShellLink.createLink(exe.absolutePath, lnk.absolutePath)
+
+        if(InstallationProperties.startLnk) {
+            println("[CreateStartMenuShortcutProcess] Testing process...")
+            test = !lnk.exists()
+            if (!test) {
+                throw Exception("Testing of 'CreateStartMenuShortcutProcess' was not successful!")
+            } else {
+                ShellLink.createLink(exe.absolutePath, lnk.absolutePath)
+            }
+
+            if (lnk.exists()) {
+                println("[CreateStartMenuShortcutProcess] Lnk file successfully extracted!")
+                status = 1
+            }else {
+                throw Exception("Process 'CreateStartMenuShortcutProcess' failed")
+            }
+        }else {
+            println("[CreateStartMenuShortcutProcess] Skipping desktop shortcut")
+            status = 1
         }
 
-        if (lnk.exists()) {
-            println("[CreateStartMenuShortcutProcess] Lnk file successfully extracted!")
-            status = 1
-        }else {
-            throw Exception("Process 'CreateStartMenuShortcutProcess' failed")
-        }
     }
 
 }

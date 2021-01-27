@@ -17,11 +17,11 @@ class DownloadProcess : Process() {
     override fun run() {
         Thread {
             if(file.exists()) {
-                println("[DownloadProcess] Deleting old version...")
+                println("[DownloadProcess] Deleting old installation version...")
                 file.deleteRecursively()
             }
 
-            println("[DownloadProcess] Downloading new version...")
+            println("[DownloadProcess] Downloading new installation version...")
 
             val url =
                 "https://github.com/verityyt/hardware-monitoring-display/releases/latest/download/installer-download.zip"

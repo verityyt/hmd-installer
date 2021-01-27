@@ -18,7 +18,7 @@ object CustomFont {
         registerRegular()
         registerMedium()
 
-        println("Registered Fonts!")
+        println("[CustomFont] Registered Fonts")
     }
 
     fun registerLight() {

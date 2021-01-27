@@ -61,7 +61,6 @@ class ProgressScreen : Screen() {
     }
 
     override fun afterSwitch() {
-        println("Executing download process...")
         downloadProc.run()
     }
 
