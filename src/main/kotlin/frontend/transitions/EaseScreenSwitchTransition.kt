@@ -5,6 +5,9 @@ import frontend.utils.Screen
 
 class EaseScreenSwitchTransition(private val newNextScreen: Screen?) : Transition() {
 
+    /**
+     * Whether the transition is finished/at end
+     */
     private var finished = false
 
     override fun start() {

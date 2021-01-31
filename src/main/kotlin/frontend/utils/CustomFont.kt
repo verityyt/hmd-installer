@@ -13,6 +13,9 @@ object CustomFont {
     var regular: Font? = null
     var medium: Font? = null
 
+    /**
+     * Register all fonts
+     */
     fun registerFonts() {
         registerLight()
         registerRegular()
@@ -21,6 +24,9 @@ object CustomFont {
         println("[CustomFont] Registered Fonts")
     }
 
+    /**
+     * Register **Product Sans Light**
+     */
     fun registerLight() {
         light =
             Font.createFont(Font.TRUETYPE_FONT, File("files/fonts/Product-Sans-Light.ttf"))
@@ -28,6 +34,9 @@ object CustomFont {
         ge.registerFont(light)
     }
 
+    /**
+     * Register **Product Sans Regular**
+     */
     fun registerRegular() {
         regular =
             Font.createFont(Font.TRUETYPE_FONT, File("files/fonts/Product-Sans-Regular.ttf"))
@@ -35,6 +44,9 @@ object CustomFont {
         ge.registerFont(regular)
     }
 
+    /**
+     * Register **Product Sans Medium**
+     */
     fun registerMedium() {
         medium =
             Font.createFont(Font.TRUETYPE_FONT, File("files/fonts/Product-Sans-Medium.ttf"))
@@ -42,6 +54,9 @@ object CustomFont {
         ge.registerFont(medium)
     }
 
+    /**
+     * Draw string centered in rectangle
+     */
     fun drawCentredString(graphics: Graphics, rect: Rectangle, text: String, color: Color, font: Font) {
         val metrics: FontMetrics = graphics.getFontMetrics(font)
         val x: Int = rect.x + (rect.width - metrics.stringWidth(text)) / 2
