@@ -7,6 +7,9 @@ import backend.processes.installation.UnzipProcess
 
 object InstallationManager {
 
+    /**
+     * List of all processes which have to be executed during installation
+     */
     private val processes = listOf(DownloadProcess(), UnzipProcess(), CreateDesktopShortcutProcess(), CreateStartMenuShortcutProcess())
 
     fun startInstallation() {
