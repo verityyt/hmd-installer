@@ -7,12 +7,25 @@ import java.io.File
 
 class CreateStartMenuShortcutProcess : Process() {
 
+    /**
+     * Location of **hmd.exe**
+     */
     private val exe = File("C:\\Program Files\\Hardware Monitoring Display\\hmd.exe")
+
+    /**
+     * Directory of the **Windows** folder in the **ProgramData** folder
+     */
     private val win = File("${System.getProperty("user.home")}\\../../ProgramData\\Microsoft\\Windows\\")
     private val lnk = File("$win\\Start Menu\\Programs\\Hardware Monitoring Display.lnk")
 
+    /**
+     * If link doesn't exists
+     */
     override var test: Boolean = !lnk.exists()
 
+    /**
+     * Current status of the process
+     */
     override var status: Int = 0
 
     override fun run() {

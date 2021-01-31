@@ -7,11 +7,24 @@ import java.io.File
 
 class CreateDesktopShortcutProcess : Process() {
 
+    /**
+     * Location of **hmd.exe**
+     */
     private val exe = File("C:\\Program Files\\Hardware Monitoring Display\\hmd.exe")
+
+    /**
+     * Directory of desktop shortcut, which has to be created in the process
+     */
     private val lnk = File("${System.getProperty("user.home")}\\Desktop\\Hardware Monitoring Display.lnk")
 
+    /**
+     * If link doesn't exists
+     */
     override var test: Boolean = !lnk.exists()
 
+    /**
+     * Current status of the process
+     */
     override var status: Int = 0
 
     override fun run() {

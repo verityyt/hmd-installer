@@ -8,10 +8,19 @@ import java.net.URL
 
 class DownloadProcess : Process() {
 
+    /**
+     * Always true
+     */
     override var test: Boolean = true
 
+    /**
+     * Current status of the process
+     */
     override var status: Int = 0
 
+    /**
+     * Target location of the zip file which has to be downloaded from the latest github release of the hardware-monitoring display
+     */
     private var file = File("files\\current-version.zip")
 
     override fun run() {

@@ -10,10 +10,19 @@ import java.io.FileOutputStream
 
 class UnzipProcess : Process() {
 
+    /**
+     * Location of the downloaded zip file
+     */
     private val file = File("files\\current-version.zip")
 
+    /**
+     * If downloaded zip file exists
+     */
     override var test: Boolean = file.exists()
 
+    /**
+     * Current status of the process
+     */
     override var status: Int = 0
 
     override fun run() {
