@@ -20,6 +20,10 @@ class MouseListener : MouseListener {
                     InstallationProperties.desktopLnk = (Window.screen as PropertiesScreen).desktopLnk.checked
                     InstallationProperties.startLnk = (Window.screen as PropertiesScreen).startLnk.checked
                     InstallationProperties.instDir = (Window.screen as PropertiesScreen).dirText.text
+                    InstallationProperties.dri1Fil = (Window.screen as PropertiesScreen).dri1FilText.text
+                    InstallationProperties.dri2Fil = (Window.screen as PropertiesScreen).dri2FilText.text
+                    InstallationProperties.dri1Na = (Window.screen as PropertiesScreen).dri1NaText.text
+                    InstallationProperties.dri2Na = (Window.screen as PropertiesScreen).dri2NaText.text
                     EaseScreenSwitchTransition(null).start()
                 }
             }

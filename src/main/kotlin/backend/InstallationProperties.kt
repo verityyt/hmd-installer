@@ -17,4 +17,24 @@ object InstallationProperties {
      */
     var instDir = "C:\\Program Files\\Hardware Monitoring Display\\"
 
+    /**
+     * Drive 1 Filter
+     */
+    var dri1Fil = ""
+
+    /**
+     * Drive 2 Filter
+     */
+    var dri2Fil = ""
+
+    /**
+     * Drive 1 Name
+     */
+    var dri1Na = ""
+
+    /**
+     * Drive 2 Name
+     */
+    var dri2Na = ""
+
 }

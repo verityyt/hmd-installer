@@ -1,9 +1,6 @@
 package frontend.screen
 
-import backend.processes.installation.CreateDesktopShortcutProcess
-import backend.processes.installation.CreateStartMenuShortcutProcess
-import backend.processes.installation.DownloadProcess
-import backend.processes.installation.UnzipProcess
+import backend.processes.installation.*
 import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
@@ -20,10 +17,11 @@ class ProgressScreen : Screen() {
     private val unzipProc = UnzipProcess()
     private val dskLnkProc = CreateDesktopShortcutProcess()
     private val startLnkProc = CreateStartMenuShortcutProcess()
+    private val configProc = CreateConfigurationProcess()
 
     private val downloadSpinnerWidget = LoadingSpinnerWidget(35,125,50, 3f, this, downloadProc, unzipProc)
-    private val unzipSpinnerWidget = LoadingSpinnerWidget(35,200,50, 3f, this, unzipProc, dskLnkProc)
-    private val configSpinnerWidget = LoadingSpinnerWidget(35,275,50, 3f, this)
+    private val unzipSpinnerWidget = LoadingSpinnerWidget(35,200,50, 3f, this, unzipProc, configProc)
+    private val configSpinnerWidget = LoadingSpinnerWidget(35,275,50, 3f, this, configProc, dskLnkProc)
     private val desktopLnkSpinnerWidget = LoadingSpinnerWidget(35,350,50, 3f, this, dskLnkProc, startLnkProc)
     private val startMenuLnkSpinnerWidget = LoadingSpinnerWidget(35,425,50, 3f, this, dskLnkProc)
 
