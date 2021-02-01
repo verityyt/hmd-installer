@@ -24,6 +24,11 @@ class MouseListener : MouseListener {
                     InstallationProperties.dri2Fil = (Window.screen as PropertiesScreen).dri2FilText.text
                     InstallationProperties.dri1Na = (Window.screen as PropertiesScreen).dri1NaText.text
                     InstallationProperties.dri2Na = (Window.screen as PropertiesScreen).dri2NaText.text
+                    InstallationProperties.theme = if((Window.screen as PropertiesScreen).lightLnk.checked) {
+                        "LIGHT"
+                    }else {
+                        "DARK"
+                    }
                     EaseScreenSwitchTransition(null).start()
                 }
             }

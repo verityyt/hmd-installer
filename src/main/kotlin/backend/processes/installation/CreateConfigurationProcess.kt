@@ -27,6 +27,17 @@ class CreateConfigurationProcess : Process() {
         json["drive1_name"] = InstallationProperties.dri1Na
         json["drive2_name"] = InstallationProperties.dri2Na
 
+        when(InstallationProperties.theme) {
+            "LIGHT" -> {
+                json["color_text"] = "#000000"
+                json["color_bg"] = "#FFFFFF"
+            }
+            "DARK" -> {
+                json["color_text"] = "#FFFFFF"
+                json["color_bg"] = "#000000"
+            }
+        }
+
         file.writeText(json.toJSONString())
 
         if(file.readText() != "") {

@@ -37,4 +37,9 @@ object InstallationProperties {
      */
     var dri2Na = ""
 
+    /**
+     * Theme
+     */
+    var theme = ""
+
 }
