@@ -10,7 +10,7 @@ class CreateDesktopShortcutProcess : Process() {
     /**
      * Location of **hmd.exe**
      */
-    private val exe = File("C:\\Program Files\\Hardware Monitoring Display\\hmd.exe")
+    private val exe = File("${InstallationProperties.instDir}hmd.exe")
 
     /**
      * Directory of desktop shortcut, which has to be created in the process

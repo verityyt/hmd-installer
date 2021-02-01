@@ -12,4 +12,9 @@ object InstallationProperties {
      */
     var startLnk = false
 
+    /**
+     * Target installation directory
+     */
+    var instDir = "C:\\Program Files\\Hardware Monitoring Display\\"
+
 }

@@ -1,5 +1,6 @@
 package backend.processes.uninstallation
 
+import backend.InstallationProperties
 import backend.Process
 import java.io.File
 
@@ -7,9 +8,9 @@ import java.io.File
 class DeleteFilesProcess : Process() {
 
     /**
-     * Installation directory of the mdh
+     * Installation directory of the hmd
      */
-    val folder = File("C:\\Program Files\\Hardware Monitoring Display\\")
+    val folder = File(InstallationProperties.instDir)
 
     /**
      * HMD is installed

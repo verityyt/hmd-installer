@@ -1,5 +1,6 @@
 package frontend.screen
 
+import backend.InstallationProperties
 import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
@@ -21,7 +22,7 @@ class PropertiesScreen : Screen() {
     val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3,this, true)
     val startLnk = CheckboxWidget(370, 172, 30, 10, 3, this, true)
     val dirText =
-        TextFieldWidget(370, 225, 400, 30, 10, 3, this, "C:\\Program Files (x86)\\Hardware Monitoring Display")
+        TextFieldWidget(370, 225, 400, 30, 10, 3, this, InstallationProperties.instDir)
 
     val lightLnk = CheckboxWidget(233, 377, 30, 10, 3,this, true)
     val darkLnk = CheckboxWidget(360, 377, 30, 10, 3, this)

@@ -19,6 +19,7 @@ class MouseListener : MouseListener {
                 if(e.x > 675 && e.x < (675 + 90) && e.y > 675 && e.y < (675 + 50 + 20)) {
                     InstallationProperties.desktopLnk = (Window.screen as PropertiesScreen).desktopLnk.checked
                     InstallationProperties.startLnk = (Window.screen as PropertiesScreen).startLnk.checked
+                    InstallationProperties.instDir = (Window.screen as PropertiesScreen).dirText.text
                     EaseScreenSwitchTransition(null).start()
                 }
             }

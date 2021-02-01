@@ -1,5 +1,6 @@
 package backend.processes.installation
 
+import backend.InstallationProperties
 import backend.Process
 import java.io.File
 import java.io.FileInputStream
@@ -26,7 +27,7 @@ class UnzipProcess : Process() {
     override var status: Int = 0
 
     override fun run() {
-        val destDir = File("C:\\Program Files\\Hardware Monitoring Display\\")
+        val destDir = File(InstallationProperties.instDir)
 
         println("[UnzipProcess] Testing process...")
         test = file.exists()
