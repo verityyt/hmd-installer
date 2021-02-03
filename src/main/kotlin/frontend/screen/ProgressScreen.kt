@@ -1,6 +1,8 @@
 package frontend.screen
 
+import backend.Process
 import backend.processes.installation.*
+import frontend.transitions.EaseScreenSwitchTransition
 import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
@@ -23,7 +25,17 @@ class ProgressScreen : Screen() {
     private val unzipSpinnerWidget = LoadingSpinnerWidget(35,200,50, 3f, this, unzipProc, configProc)
     private val configSpinnerWidget = LoadingSpinnerWidget(35,275,50, 3f, this, configProc, dskLnkProc)
     private val desktopLnkSpinnerWidget = LoadingSpinnerWidget(35,350,50, 3f, this, dskLnkProc, startLnkProc)
-    private val startMenuLnkSpinnerWidget = LoadingSpinnerWidget(35,425,50, 3f, this, dskLnkProc)
+    private val startMenuLnkSpinnerWidget = LoadingSpinnerWidget(35,425,50, 3f, this, dskLnkProc, object : Process() {
+        override var test: Boolean = true
+
+        override var status: Int = 0
+
+        override fun run() {
+            EaseScreenSwitchTransition(null).start()
+            status = 1
+        }
+
+    })
 
     override var originX: Int = 800
 

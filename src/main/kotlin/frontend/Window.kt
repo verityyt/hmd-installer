@@ -3,6 +3,7 @@ package frontend
 import frontend.listener.KeyListener
 import frontend.listener.MouseListener
 import frontend.listener.MouseMotionListener
+import frontend.screen.FinishedScreen
 import frontend.screen.LandingScreen
 import frontend.screen.PropertiesScreen
 import frontend.utils.CustomFont

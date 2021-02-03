@@ -2,6 +2,7 @@ package frontend.listener
 
 import backend.InstallationProperties
 import frontend.Window
+import frontend.screen.FinishedScreen
 import frontend.screen.PropertiesScreen
 import frontend.transitions.EaseScreenSwitchTransition
 import java.awt.event.MouseEvent
@@ -29,7 +30,7 @@ class MouseListener : MouseListener {
                     }else {
                         "DARK"
                     }
-                    EaseScreenSwitchTransition(null).start()
+                    EaseScreenSwitchTransition(FinishedScreen()).start()
                 }
             }
 
