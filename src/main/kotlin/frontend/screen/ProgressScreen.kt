@@ -45,8 +45,8 @@ class ProgressScreen : Screen() {
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(36f)
-        g.drawString("Installation in progress", originX + 210, 60)
-        g.fillRect(originX + 180, 75, 400, 3)
+        g.drawString("Installation in progress", originX + 225, 60)
+        g.fillRect(originX + 200, 75, 400, 3)
 
         downloadSpinnerWidget.paint(g,g2,observer)
         g.color = Color.black

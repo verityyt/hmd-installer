@@ -43,8 +43,8 @@ class PropertiesScreen : Screen() {
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(36f)
-        g.drawString("Installation properties", originX + 210, 60)
-        g.fillRect(originX + 180, 75, 400, 3)
+        g.drawString("Installation properties", originX + 230, 60)
+        g.fillRect(originX + 200, 75, 400, 3)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
@@ -64,8 +64,8 @@ class PropertiesScreen : Screen() {
         /* Configuration */
 
         g.font = CustomFont.regular?.deriveFont(36f)
-        g.drawString("Configuration", originX + 275, 320)
-        g.fillRect(originX + 180, 335, 400, 3)
+        g.drawString("Configuration", originX + 290, 320)
+        g.fillRect(originX + 200, 335, 400, 3)
 
         g.color = Color.black
         g.font = CustomFont.regular?.deriveFont(24f)
