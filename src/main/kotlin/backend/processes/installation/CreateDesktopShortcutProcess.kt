@@ -33,7 +33,7 @@ class CreateDesktopShortcutProcess : Process() {
             println("[CreateDesktopShortcutProcess] Testing process...")
             test = !lnk.exists()
             if(!test) {
-                throw Exception("Testing of 'CreateDesktopShortcutProcess' was not successful!")
+                HMDInstaller.showError(400, "Testing of 'CreateDesktopShortcutProcess' was not successful!")
             }else {
                 ShellLink.createLink(exe.absolutePath,lnk.absolutePath)
             }
@@ -41,7 +41,7 @@ class CreateDesktopShortcutProcess : Process() {
             if(lnk.exists()) {
                 status = 1
             }else {
-                throw Exception("Process 'CreateDesktopShortcutProcess' failed")
+                HMDInstaller.showError(400, "Process 'CreateDesktopShortcutProcess' failed")
             }
         }else {
             println("[CreateDesktopShortcutProcess] Skipping desktop shortcut")

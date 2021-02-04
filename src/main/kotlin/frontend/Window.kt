@@ -13,6 +13,7 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.io.File
+import java.util.*
 import javax.imageio.ImageIO
 import javax.swing.JComponent
 import javax.swing.JFrame
@@ -91,11 +92,12 @@ object Window {
 
             window.isVisible = true
 
-            while (true) {
+            while(true) {
                 Thread.sleep(1000 / 60)
                 window.repaint()
             }
         }.start()
+
     }
 
 }

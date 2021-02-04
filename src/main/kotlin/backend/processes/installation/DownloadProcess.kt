@@ -44,14 +44,14 @@ class DownloadProcess : Process() {
                     output.write(dataBuffer, 0, bytesRead)
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                HMDInstaller.showError(408)
             }
 
             if (file.exists()) {
                 println("[DownloadProcess] File successfully downloaded!")
                 status = 1
             } else {
-                throw Exception("Process 'DownloadProcess' failed")
+                HMDInstaller.showError(400,"Process 'DownloadProcess' failed")
             }
         }.start()
     }
