@@ -1,5 +1,6 @@
 package frontend.widgets
 
+import frontend.Window
 import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
@@ -29,12 +30,18 @@ class TextFieldWidget(
         text = standard
     }
 
+    var overrideColor: Color? = null
+
     override fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver) {
 
-        g2.paint = if(focused) {
-            Color.decode("#BFBFBF")
+        g2.paint = if(overrideColor == null) {
+            if (focused) {
+                Color.decode("#BFBFBF")
+            } else {
+                Color.black
+            }
         }else {
-            Color.black
+            overrideColor
         }
         g2.stroke = BasicStroke(stroke.toFloat())
         g2.draw(
@@ -55,7 +62,8 @@ class TextFieldWidget(
     }
 
     override fun click(x: Int, y: Int) {
-        focused = (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + this.h + 10))
+        focused =
+            (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + this.h + 10))
     }
 
     override fun hover(x: Int, y: Int) {}
@@ -64,14 +72,14 @@ class TextFieldWidget(
         if (focused) {
             when (e.keyCode) {
                 8 -> {
-                    if(text.length != 0) {
+                    if (text.length != 0) {
                         text = text.substring(0, text.length - 1)
                     }
                 }
                 10 -> focused = false
                 27 -> focused = false
                 else -> {
-                    if(isAllowed(e.keyCode, e.keyChar)) {
+                    if (isAllowed(e.keyCode, e.keyChar)) {
                         text += e.keyChar.toString()
                     }
                 }
@@ -81,6 +89,29 @@ class TextFieldWidget(
 
     private fun isAllowed(keyCode: Int, keyChar: Char): Boolean {
         return (keyCode in 48..57) || (keyCode in 65..90) || (keyCode in 96..105) || (keyCode == 32) || (keyCode == 47) || (keyCode == 92) || (keyCode == 46) || (keyChar == '\\')
+    }
+
+    fun error() {
+        Thread {
+            overrideColor = Color.decode("#e74c3c")
+
+            for (i in 1..5) {
+                wiggle()
+                Thread.sleep(50)
+            }
+
+            overrideColor = null
+        }.start()
+    }
+
+    private fun wiggle() {
+        Thread {
+            x += 10
+            Thread.sleep(10)
+            x -= 20
+            Thread.sleep(10)
+            x += 10
+        }.start()
     }
 
 }
