@@ -8,10 +8,7 @@ import frontend.screen.LandingScreen
 import frontend.screen.PropertiesScreen
 import frontend.utils.CustomFont
 import frontend.utils.Screen
-import java.awt.Color
-import java.awt.Graphics
-import java.awt.Graphics2D
-import java.awt.RenderingHints
+import java.awt.*
 import java.io.File
 import javax.imageio.ImageIO
 import javax.swing.JComponent
@@ -25,6 +22,9 @@ object Window {
 
     var screen: Screen = LandingScreen()
     var nextScreen: Screen? = PropertiesScreen()
+
+    lateinit var graphic: Graphics
+    lateinit var graphic2d: Graphics2D
 
     fun build() {
         Thread {
@@ -67,7 +67,9 @@ object Window {
                     )
 
                     screen.paint(g, g2, this)
-                    nextScreen?.paint(g, g2, this)
+
+                    graphic = g
+                    graphic2d = g2
 
                 }
 
@@ -96,6 +98,49 @@ object Window {
                 window.repaint()
             }
         }.start()
+    }
+
+    fun drawError(errorCode: Int, errorText: String? = null) {
+        val g = graphic
+
+        g.color = Color.WHITE
+        g.fillRect(0, 0, 800, 775)
+
+        g.color = Color.BLACK
+        g.font = CustomFont.regular?.deriveFont(36f)
+        g.drawString("An error occurred", 260, 60)
+        g.fillRect(200, 75, 400, 3)
+
+        g.font = CustomFont.regular?.deriveFont(24f)
+        g.drawString("Error Code $errorCode", 315, 190)
+
+        g.font = CustomFont.light?.deriveFont(24f)
+
+        when (errorCode) {
+            403 -> {
+                g.drawString("Running the installer as administrator could fix this error.", 100, 225)
+                g.drawString("1.  Right click the .exe file", 100, 295)
+                g.drawString("2. Click \"Run as administrator\"", 100, 330)
+                g.drawString("3. Continue with the installation", 100, 365)
+            }
+            408 -> {
+                g.drawString("Please connect your pc with the internet.", 190, 225)
+            }
+            400 -> {
+                g.drawString("Please close the installer, and try again.", 195, 225)
+                CustomFont.drawCentredString(
+                    g,
+                    Rectangle(40, 225, 720, 50),
+                    "(${errorText!!})",
+                    Color.BLACK,
+                    CustomFont.light!!.deriveFont(24f)
+                )
+            }
+            else -> {
+                g.drawString("Unknown error code", 283, 225)
+            }
+        }
+
     }
 
 }

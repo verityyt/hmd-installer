@@ -1,6 +1,7 @@
 package backend.processes.installation
 
 import backend.Process
+import frontend.Window
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -44,14 +45,14 @@ class DownloadProcess : Process() {
                     output.write(dataBuffer, 0, bytesRead)
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                Window.drawError(408)
             }
 
             if (file.exists()) {
                 println("[DownloadProcess] File successfully downloaded!")
                 status = 1
             } else {
-                throw Exception("Process 'DownloadProcess' failed")
+                Window.drawError(400, "Process 'DownloadProcess' failed")
             }
         }.start()
     }
