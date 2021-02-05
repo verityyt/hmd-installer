@@ -1,2 +1,4 @@
 /.gradle/
 /build/
+/files/current-version.zip
+/files/old-current-version.zip
