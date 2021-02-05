@@ -47,7 +47,7 @@ class CreateConfigurationProcess : Process() {
                 status = 1
             }
         }catch (e: Exception) {
-            Window.drawError(403)
+            HMDInstaller.showError(403)
         }
 
     }

@@ -26,10 +26,10 @@ class PropertiesScreen : Screen() {
 
     val lightLnk = CheckboxWidget(233, 377, 30, 10, 3,this, true)
     val darkLnk = CheckboxWidget(360, 377, 30, 10, 3, this)
-    val dri1FilText = TextFieldWidget(233, 433, 158, 30, 10, 3, this) // Drive 1 Filter
-    val dri2FilText = TextFieldWidget(233, 483, 158, 30, 10, 3, this) // Drive 2 Filter
-    val dri1NaText = TextFieldWidget(233, 533, 158, 30, 10, 3, this) // Drive 1 Name
-    val dri2NaText = TextFieldWidget(233, 583, 158, 30, 10, 3, this) // Drive 2 Name
+    val dri1FilText = TextFieldWidget(233, 433, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 1 Filter
+    val dri2FilText = TextFieldWidget(233, 483, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 2 Filter
+    val dri1NaText = TextFieldWidget(233, 533, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 1 Name
+    val dri2NaText = TextFieldWidget(233, 583, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 2 Name
 
     override val widgets: List<Widget> =
         listOf(desktopLnk, startLnk, dirText, lightLnk, darkLnk, dri1FilText, dri2FilText, dri1NaText, dri2NaText)

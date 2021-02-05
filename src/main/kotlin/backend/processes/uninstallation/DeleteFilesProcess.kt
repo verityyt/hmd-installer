@@ -28,7 +28,7 @@ class DeleteFilesProcess : Process() {
         Logger.log("Testing process...", this.javaClass)
         test = folder.exists()
         if (!test) {
-            Window.drawError(400, "Testing of 'DeleteFilesProcess' was not successful!")
+            HMDInstaller.showError(400, "Testing of 'DeleteFilesProcess' was not successful!")
         } else {
             folder.deleteRecursively()
         }
