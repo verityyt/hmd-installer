@@ -15,7 +15,7 @@ object InstallationManager {
             Thread.sleep(1000)
         }
 
-        println("[System] Installation was successful!")
+        Logger.log("Installation was successful!", this.javaClass)
     }
 
 }

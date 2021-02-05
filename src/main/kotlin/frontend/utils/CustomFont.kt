@@ -1,5 +1,7 @@
 package frontend.utils
 
+import backend.Logger
+import sun.rmi.runtime.Log
 import java.awt.*
 import java.io.File
 import java.io.FileOutputStream
@@ -21,7 +23,7 @@ object CustomFont {
         registerRegular()
         registerMedium()
 
-        println("[CustomFont] Registered Fonts")
+        Logger.log("Registered Fonts!", this.javaClass)
     }
 
     /**

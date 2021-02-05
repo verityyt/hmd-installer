@@ -1,5 +1,6 @@
 package backend.processes.uninstallation
 
+import backend.Logger
 import backend.Process
 import java.io.File
 
@@ -26,14 +27,14 @@ class DeleteStartMenuShortcutProcess : Process() {
     override var status: Int = 0
 
     override fun run() {
-        println("[DeleteStartMenuShortcutProcess] Testing process...")
+        Logger.log("Testing process...", this.javaClass)
         test = lnk.exists()
         if(test) {
             lnk.deleteRecursively()
         }
 
         if(!lnk.exists()) {
-            println("[DeleteStartMenuShortcutProcess] Lnk file successfully extracted!")
+            Logger.log("Lnk file successfully deleted!", this.javaClass)
         }
     }
 

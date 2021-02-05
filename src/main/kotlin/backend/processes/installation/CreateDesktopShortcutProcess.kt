@@ -1,6 +1,7 @@
 package backend.processes.installation
 
 import backend.InstallationProperties
+import backend.Logger
 import backend.Process
 import mslinks.ShellLink
 import java.io.File
@@ -30,7 +31,7 @@ class CreateDesktopShortcutProcess : Process() {
     override fun run() {
 
         if(InstallationProperties.desktopLnk) {
-            println("[CreateDesktopShortcutProcess] Testing process...")
+            Logger.log("Testing process...", this.javaClass)
             test = !lnk.exists()
             if(!test) {
                 HMDInstaller.showError(400, "Testing of 'CreateDesktopShortcutProcess' was not successful!")
@@ -44,7 +45,7 @@ class CreateDesktopShortcutProcess : Process() {
                 HMDInstaller.showError(400, "Process 'CreateDesktopShortcutProcess' failed")
             }
         }else {
-            println("[CreateDesktopShortcutProcess] Skipping desktop shortcut")
+            Logger.log("Skipping desktop shortcut", this.javaClass)
             status = 1
         }
 
