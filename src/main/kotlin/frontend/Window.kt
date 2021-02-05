@@ -8,10 +8,7 @@ import frontend.screen.LandingScreen
 import frontend.screen.PropertiesScreen
 import frontend.utils.CustomFont
 import frontend.utils.Screen
-import java.awt.Color
-import java.awt.Graphics
-import java.awt.Graphics2D
-import java.awt.RenderingHints
+import java.awt.*
 import java.io.File
 import java.util.*
 import javax.imageio.ImageIO
@@ -68,7 +65,6 @@ object Window {
                     )
 
                     screen.paint(g, g2, this)
-                    nextScreen?.paint(g, g2, this)
 
                 }
 
