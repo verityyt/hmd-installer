@@ -17,3 +17,39 @@ dependencies {
     implementation("com.github.vatbub:mslinks:1.0.6")
     compile(files("D:\\Development\\Utils\\APIs\\json-simple-1.1.jar"))
 }
+
+configure<JavaPluginConvention> {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    jar {
+        archiveName = "HMD-Installer.jar"
+
+        from(sourceSets.main.get().output)
+        dependsOn(configurations.runtimeClasspath)
+
+        from({
+            configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+        })
+
+        manifest {
+            attributes["Main-Class"] = "HMDInstaller"
+        }
+
+        exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
+    }
+}
+
+tasks.register("export") {
+    group = "build"
+    description = "Exports the project as jar file"
+
+    dependsOn("jar")
+}
