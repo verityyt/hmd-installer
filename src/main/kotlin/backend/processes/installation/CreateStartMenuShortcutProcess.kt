@@ -1,6 +1,7 @@
 package backend.processes.installation
 
 import backend.InstallationProperties
+import backend.Logger
 import backend.Process
 import mslinks.ShellLink
 import java.io.File
@@ -33,7 +34,7 @@ class CreateStartMenuShortcutProcess : Process() {
 
         try {
             if (InstallationProperties.startLnk) {
-                println("[CreateStartMenuShortcutProcess] Testing process...")
+                Logger.log("Testing process...", this.javaClass)
                 test = !lnk.exists()
                 if (!test) {
                     HMDInstaller.showError(400, "Testing of 'CreateStartMenuShortcutProcess' was not successful!")
@@ -42,13 +43,13 @@ class CreateStartMenuShortcutProcess : Process() {
                 }
 
                 if (lnk.exists()) {
-                    println("[CreateStartMenuShortcutProcess] Lnk file successfully extracted!")
+                    Logger.log("Lnk file successfully extracted!", this.javaClass)
                     status = 1
                 } else {
                     HMDInstaller.showError(400, "Process 'CreateStartMenuShortcutProcess' failed")
                 }
             } else {
-                println("[CreateStartMenuShortcutProcess] Skipping desktop shortcut")
+                Logger.log("Skipping desktop shortcut...", this.javaClass)
                 status = 1
             }
         } catch (e: Exception) {

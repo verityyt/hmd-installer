@@ -4,13 +4,13 @@ import frontend.Window
 import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
-import java.awt.BasicStroke
-import java.awt.Color
-import java.awt.Graphics
-import java.awt.Graphics2D
+import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.geom.RoundRectangle2D
 import java.awt.image.ImageObserver
+import java.io.File
+import java.net.URI
+import javax.imageio.ImageIO
 
 class TextFieldWidget(
     override var x: Int,
@@ -20,7 +20,8 @@ class TextFieldWidget(
     private val arc: Int,
     private val stroke: Int,
     val parent: Screen,
-    private val standard: String = ""
+    private val standard: String = "",
+    private var questionLink: String? = null
 ) : Widget() {
 
     private var focused = false
@@ -34,13 +35,13 @@ class TextFieldWidget(
 
     override fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver) {
 
-        g2.paint = if(overrideColor == null) {
+        g2.paint = if (overrideColor == null) {
             if (focused) {
                 Color.decode("#BFBFBF")
             } else {
                 Color.black
             }
-        }else {
+        } else {
             overrideColor
         }
         g2.stroke = BasicStroke(stroke.toFloat())
@@ -59,11 +60,21 @@ class TextFieldWidget(
         g.color = Color.black
         g.drawString(text, parent.originX + x + 5, y + 21)
 
+        if(questionLink != null) {
+            g.drawImage(ImageIO.read(File("files\\images\\questionmark.png")), parent.originX + x + w - 20, y + 7, observer)
+        }
+
     }
 
     override fun click(x: Int, y: Int) {
         focused =
             (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + this.h + 10))
+
+        if(questionLink != null) {
+            if(x > (parent.originX + this.x + this.w - 50) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + this.h + 10)) {
+                Desktop.getDesktop().browse(URI(questionLink!!))
+            }
+        }
     }
 
     override fun hover(x: Int, y: Int) {}

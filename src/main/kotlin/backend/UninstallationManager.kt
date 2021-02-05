@@ -16,7 +16,8 @@ object UninstallationManager {
             process.run()
         }
 
-        println("[System] Uninstallation was successful!")
+
+        Logger.log("Uninstallation was successful!", this.javaClass)
     }
 
 }

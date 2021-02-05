@@ -1,6 +1,7 @@
 package backend.processes.installation
 
 import backend.InstallationProperties
+import backend.Logger
 import backend.Process
 import java.io.File
 import java.io.FileInputStream
@@ -30,12 +31,12 @@ class UnzipProcess : Process() {
         try {
             val destDir = File(InstallationProperties.instDir)
 
-            println("[UnzipProcess] Testing process...")
+            Logger.log("Testing process...", this.javaClass)
             test = file.exists()
             if (!test) {
                 HMDInstaller.showError(400, "Testing of 'UnzipProcess' was not successful!")
             } else {
-                println("[UnzipProcess] Extracting zip file...")
+                Logger.log("Extracting zip file...", this.javaClass)
                 val zipLoc = file.absolutePath
 
                 val buffer = ByteArray(1024)
@@ -67,7 +68,7 @@ class UnzipProcess : Process() {
             }
 
             if (destDir.exists() && destDir.isDirectory) {
-                println("[UnzipProcess] Zip file successfully extracted!")
+                Logger.log("Zip file successfully extracted!", this.javaClass)
                 status = 1
             } else {
                 HMDInstaller.showError(400, "Process 'UnzipProcess' failed")

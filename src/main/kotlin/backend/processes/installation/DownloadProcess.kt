@@ -1,5 +1,6 @@
 package backend.processes.installation
 
+import backend.Logger
 import backend.Process
 import java.io.BufferedInputStream
 import java.io.File
@@ -26,11 +27,12 @@ class DownloadProcess : Process() {
     override fun run() {
         Thread {
             if(file.exists()) {
-                println("[DownloadProcess] Deleting old installation version...")
+                Logger.log("Deleting old installation version...", this.javaClass)
                 file.deleteRecursively()
             }
 
-            println("[DownloadProcess] Downloading new installation version...")
+
+            Logger.log("Downloading new installation version...", this.javaClass)
 
             val url =
                 "https://github.com/verityyt/hardware-monitoring-display/releases/latest/download/installer-download.zip"
@@ -48,7 +50,7 @@ class DownloadProcess : Process() {
             }
 
             if (file.exists()) {
-                println("[DownloadProcess] File successfully downloaded!")
+                Logger.log("File successfully downloaded!", this.javaClass)
                 status = 1
             } else {
                 HMDInstaller.showError(400,"Process 'DownloadProcess' failed")
