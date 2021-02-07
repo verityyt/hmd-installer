@@ -11,12 +11,12 @@ class CreateDesktopShortcutProcess : Process() {
     /**
      * Location of **hmd.exe**
      */
-    private val exe = File("${InstallationProperties.instDir}hmd.exe")
+    private var exe = File("${InstallationProperties.instDir}\\hmd.exe")
 
     /**
      * Directory of desktop shortcut, which has to be created in the process
      */
-    private val lnk = File("${System.getProperty("user.home")}\\Desktop\\Hardware Monitoring Display.lnk")
+    private var lnk = File("${System.getProperty("user.home")}\\Desktop\\Hardware Monitoring Display.lnk")
 
     /**
      * If link doesn't exists
@@ -36,6 +36,8 @@ class CreateDesktopShortcutProcess : Process() {
             if(!test) {
                 HMDInstaller.showError(400, "Testing of 'CreateDesktopShortcutProcess' was not successful!")
             }else {
+                exe = File("${InstallationProperties.instDir}\\hmd.exe")
+                lnk = File("${System.getProperty("user.home")}\\Desktop\\Hardware Monitoring Display.lnk")
                 ShellLink.createLink(exe.absolutePath,lnk.absolutePath)
             }
 

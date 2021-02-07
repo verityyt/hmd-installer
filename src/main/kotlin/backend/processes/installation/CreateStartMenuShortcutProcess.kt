@@ -12,13 +12,13 @@ class CreateStartMenuShortcutProcess : Process() {
     /**
      * Location of **hmd.exe**
      */
-    private val exe = File("${InstallationProperties.instDir}hmd.exe")
+    private var exe = File("${InstallationProperties.instDir}\\hmd.exe")
 
     /**
      * Directory of the **Windows** folder in the **ProgramData** folder
      */
     private val win = File("${System.getProperty("user.home")}\\../../ProgramData\\Microsoft\\Windows\\")
-    private val lnk = File("$win\\Start Menu\\Programs\\Hardware Monitoring Display.lnk")
+    private var lnk = File("$win\\Start Menu\\Programs\\Hardware Monitoring Display.lnk")
 
     /**
      * If link doesn't exists
@@ -39,6 +39,8 @@ class CreateStartMenuShortcutProcess : Process() {
                 if (!test) {
                     HMDInstaller.showError(400, "Testing of 'CreateStartMenuShortcutProcess' was not successful!")
                 } else {
+                    exe = File("${InstallationProperties.instDir}\\hmd.exe")
+                    lnk = File("$win\\Start Menu\\Programs\\Hardware Monitoring Display.lnk")
                     ShellLink.createLink(exe.absolutePath, lnk.absolutePath)
                 }
 
