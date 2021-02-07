@@ -2,23 +2,35 @@ import frontend.Window
 import frontend.utils.CustomFont
 import java.awt.*
 import java.io.File
+import java.lang.management.ManagementFactory
+import java.util.*
 import javax.imageio.ImageIO
 import javax.swing.JComponent
 import javax.swing.JFrame
 import javax.swing.WindowConstants
-
 
 object HMDInstaller {
 
     @JvmStatic
     fun main(args: Array<String>) {
         Window.build()
-        /*InstallationManager.startInstallation()*/
+
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                if (!ManagementFactory.getRuntimeMXBean().vmVersion.startsWith("15.")) {
+                    showError(406)
+                }
+            }
+        }, 1000)
     }
 
     fun showError(code: Int, text: String? = null) {
 
-        Window.window.dispose()
+        try {
+            Window.window.dispose()
+        } catch (e: UninitializedPropertyAccessException) {
+            // Ignoring error if window is not opened yet (Error 406)
+        }
 
         val frame = JFrame()
         val component = object : JComponent() {
@@ -66,7 +78,7 @@ object HMDInstaller {
 
                 g.font = CustomFont.light!!.deriveFont(24f)
 
-                when(code) {
+                when (code) {
                     403 -> {
                         g.drawString("Running the installer as administrator could fix this error", 110, 150)
                         g.drawString("1.  Right click the .exe file", 110, 200)
@@ -75,6 +87,15 @@ object HMDInstaller {
                     }
                     408 -> {
                         g.drawString("Please connect your pc with the internet.", 190, 150)
+                    }
+                    406 -> {
+                        CustomFont.drawCentredString(
+                            g,
+                            Rectangle(20, 135, 760, 25),
+                            "Please install Java 15, you're currently running Java ${ManagementFactory.getRuntimeMXBean().vmVersion}",
+                            Color.BLACK,
+                            CustomFont.light!!.deriveFont(24f)
+                        )
                     }
                     400 -> {
                         g.drawString("Please close the installer, and try again.", 195, 180)
@@ -111,7 +132,6 @@ object HMDInstaller {
         frame.location = Point(((width / 2) - 400).toInt(), ((height / 2) - 175).toInt())
 
         frame.isVisible = true
-
 
     }
 
