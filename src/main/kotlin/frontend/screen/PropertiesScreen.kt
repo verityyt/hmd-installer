@@ -5,6 +5,7 @@ import frontend.utils.CustomFont
 import frontend.utils.Screen
 import frontend.utils.Widget
 import frontend.widgets.CheckboxWidget
+import frontend.widgets.DirectoryChooserWidget
 import frontend.widgets.TextFieldWidget
 import java.awt.Color
 import java.awt.Graphics
@@ -19,17 +20,52 @@ class PropertiesScreen : Screen() {
 
     var nextHovered = false
 
-    val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3,this, true)
+    val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3, this, true)
     val startLnk = CheckboxWidget(370, 172, 30, 10, 3, this, true)
-    val dirText =
-        TextFieldWidget(370, 225, 400, 30, 10, 3, this, InstallationProperties.instDir)
+    val dirText = DirectoryChooserWidget(370, 225, 400, 30, 10, 3, this)
 
-    val lightLnk = CheckboxWidget(233, 377, 30, 10, 3,this, true)
+    val lightLnk = CheckboxWidget(233, 377, 30, 10, 3, this, true)
     val darkLnk = CheckboxWidget(360, 377, 30, 10, 3, this)
-    val dri1FilText = TextFieldWidget(233, 433, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 1 Filter
-    val dri2FilText = TextFieldWidget(233, 483, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 2 Filter
-    val dri1NaText = TextFieldWidget(233, 533, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 1 Name
-    val dri2NaText = TextFieldWidget(233, 583, 158, 30, 10, 3, this, questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4") // Drive 2 Name
+    val dri1FilText = TextFieldWidget(
+        233,
+        433,
+        158,
+        30,
+        10,
+        3,
+        this,
+        questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4"
+    ) // Drive 1 Filter
+    val dri2FilText = TextFieldWidget(
+        233,
+        483,
+        158,
+        30,
+        10,
+        3,
+        this,
+        questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4"
+    ) // Drive 2 Filter
+    val dri1NaText = TextFieldWidget(
+        233,
+        533,
+        158,
+        30,
+        10,
+        3,
+        this,
+        questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4"
+    ) // Drive 1 Name
+    val dri2NaText = TextFieldWidget(
+        233,
+        583,
+        158,
+        30,
+        10,
+        3,
+        this,
+        questionLink = "https://verityyt.medium.com/hmd-installation-guide-2aafef5fa3b4"
+    ) // Drive 2 Name
 
     override val widgets: List<Widget> =
         listOf(desktopLnk, startLnk, dirText, lightLnk, darkLnk, dri1FilText, dri2FilText, dri1NaText, dri2NaText)
@@ -103,14 +139,14 @@ class PropertiesScreen : Screen() {
 
         /* Next */
 
-        if(nextHovered) {
-            g.drawImage(ImageIO.read(File("files/images/arrow_hov.png")), originX + 675, 675, 90, 50,  observer)
-        }else {
-            g.drawImage(ImageIO.read(File("files/images/arrow.png")), originX + 675, 675, 90, 50,  observer)
+        if (nextHovered) {
+            g.drawImage(ImageIO.read(File("files/images/arrow_hov.png")), originX + 675, 675, 90, 50, observer)
+        } else {
+            g.drawImage(ImageIO.read(File("files/images/arrow.png")), originX + 675, 675, 90, 50, observer)
         }
 
     }
 
-    override fun afterSwitch() { }
+    override fun afterSwitch() {}
 
 }

@@ -5,6 +5,7 @@ import frontend.Window
 import frontend.screen.FinishedScreen
 import frontend.screen.PropertiesScreen
 import frontend.transitions.EaseScreenSwitchTransition
+import frontend.widgets.DirectoryChooserWidget
 import frontend.widgets.TextFieldWidget
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
@@ -23,6 +24,11 @@ class MouseListener : MouseListener {
 
                     for (widget in Window.screen.widgets) {
                         if (widget is TextFieldWidget) {
+                            if (widget.text == "") {
+                                widget.error()
+                                check = false
+                            }
+                        } else if (widget is DirectoryChooserWidget) {
                             if (widget.text == "") {
                                 widget.error()
                                 check = false
