@@ -15,7 +15,7 @@ object InstallationProperties {
     /**
      * Target installation directory
      */
-    var instDir = "C:\\Program Files\\Hardware Monitoring Display\\"
+    var instDir = ""
 
     /**
      * Drive 1 Filter

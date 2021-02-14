@@ -1,4 +1,4 @@
-package frontend.screen
+package frontend.screen.installation
 
 import backend.InstallationProperties
 import frontend.utils.CustomFont
@@ -13,7 +13,7 @@ import java.io.File
 import javax.imageio.ImageIO
 import kotlin.system.exitProcess
 
-class FinishedScreen : Screen() {
+class InstallationFinishedScreen : Screen() {
 
     override var originX: Int = 800
 

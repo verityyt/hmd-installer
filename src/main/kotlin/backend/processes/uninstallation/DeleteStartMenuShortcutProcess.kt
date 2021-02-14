@@ -34,7 +34,9 @@ class DeleteStartMenuShortcutProcess : Process() {
         }
 
         if(!lnk.exists()) {
-            Logger.log("Lnk file successfully extracted!", this.javaClass)
+            status = 1
+        }else {
+            HMDInstaller.showError(400, "Process 'DeleteStartMenuShortcutProcess' failed")
         }
     }
 

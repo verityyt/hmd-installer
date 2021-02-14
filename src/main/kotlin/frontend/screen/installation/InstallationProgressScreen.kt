@@ -1,4 +1,4 @@
-package frontend.screen
+package frontend.screen.installation
 
 import backend.Process
 import backend.processes.installation.*
@@ -13,7 +13,7 @@ import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.image.ImageObserver
 
-class ProgressScreen : Screen() {
+class InstallationProgressScreen : Screen() {
 
     private val downloadProc = DownloadProcess()
     private val unzipProc = UnzipProcess()

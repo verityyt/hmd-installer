@@ -3,17 +3,14 @@ package frontend
 import frontend.listener.KeyListener
 import frontend.listener.MouseListener
 import frontend.listener.MouseMotionListener
-import frontend.screen.FinishedScreen
 import frontend.screen.LandingScreen
-import frontend.screen.PropertiesScreen
+import frontend.screen.installation.InstallationPropertiesScreen
 import frontend.utils.CustomFont
 import frontend.utils.Screen
-import java.awt.Color
 import java.awt.Graphics
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.io.File
-import java.util.*
 import javax.imageio.ImageIO
 import javax.swing.JComponent
 import javax.swing.JFrame
@@ -25,7 +22,7 @@ object Window {
     lateinit var component: JComponent
 
     var screen: Screen = LandingScreen()
-    var nextScreen: Screen? = PropertiesScreen()
+    var nextScreen: Screen? = InstallationPropertiesScreen()
 
     fun build() {
         Thread {

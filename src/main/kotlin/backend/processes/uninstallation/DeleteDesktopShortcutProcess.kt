@@ -29,7 +29,9 @@ class DeleteDesktopShortcutProcess : Process() {
         }
 
         if(!lnk.exists()) {
-            Logger.log("Lnk file successfully deleted!", this.javaClass)
+            status = 1
+        }else {
+            HMDInstaller.showError(400, "Process 'DeleteDesktopShortcutProcess' failed")
         }
     }
 

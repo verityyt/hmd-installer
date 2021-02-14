@@ -94,15 +94,16 @@ class ButtonWidget(
     }
 
     override fun click(x: Int, y: Int) {
-        if (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && this.y < (this.y + h) && available) {
+        if (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + h) && available) {
             action()
         }
     }
 
     override fun hover(x: Int, y: Int) {
-        hovered = (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && this.y < (this.y + h))
+        hovered =
+            (x > (parent.originX + this.x) && x < (parent.originX + this.x + this.w) && y > this.y && y < (this.y + h))
     }
 
-    override fun type(e: KeyEvent) { }
+    override fun type(e: KeyEvent) {}
 
 }

@@ -1,5 +1,10 @@
 package frontend.screen
 
+import frontend.Window
+import frontend.screen.installation.InstallationProgressScreen
+import frontend.screen.installation.InstallationPropertiesScreen
+import frontend.screen.uninstallation.UninstallationProgressScreen
+import frontend.screen.uninstallation.UninstallationPropertiesScreen
 import frontend.transitions.EaseScreenSwitchTransition
 import frontend.utils.CustomFont
 import frontend.utils.Screen
@@ -17,10 +22,14 @@ class LandingScreen : Screen() {
     override var originX: Int = 0
 
     private var installButton = ButtonWidget(originX + 230, 660, 350, 60, 25, "Install", 3, 30, this, true) {
-        EaseScreenSwitchTransition(ProgressScreen()).start()
+        Window.nextScreen = InstallationPropertiesScreen()
+        EaseScreenSwitchTransition(InstallationProgressScreen()).start()
     }
 
-    private var uninstallButton = ButtonWidget(originX + 230, 590, 350, 60, 25, "Uninstall", 3, 30, this, false) { }
+    private var uninstallButton = ButtonWidget(originX + 230, 590, 350, 60, 25, "Uninstall", 3, 30, this, true) {
+        Window.nextScreen = UninstallationPropertiesScreen()
+        EaseScreenSwitchTransition(UninstallationProgressScreen()).start()
+    }
 
     override val widgets: List<Widget> = listOf(installButton, uninstallButton)
 
@@ -45,6 +54,6 @@ class LandingScreen : Screen() {
 
     }
 
-    override fun afterSwitch() { }
+    override fun afterSwitch() {}
 
 }

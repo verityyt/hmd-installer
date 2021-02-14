@@ -1,4 +1,4 @@
-package frontend.screen
+package frontend.screen.installation
 
 import backend.InstallationProperties
 import frontend.utils.CustomFont
@@ -14,7 +14,7 @@ import java.awt.image.ImageObserver
 import java.io.File
 import javax.imageio.ImageIO
 
-class PropertiesScreen : Screen() {
+class InstallationPropertiesScreen : Screen() {
 
     override var originX: Int = 800
 
@@ -22,7 +22,7 @@ class PropertiesScreen : Screen() {
 
     val desktopLnk = CheckboxWidget(370, 122, 30, 10, 3, this, true)
     val startLnk = CheckboxWidget(370, 172, 30, 10, 3, this, true)
-    val dirText = DirectoryChooserWidget(370, 225, 400, 30, 10, 3, this)
+    val dirText = DirectoryChooserWidget(370, 225, 400, 30, 10, 3, this, "\\Hardware Monitoring Display\\")
 
     val lightLnk = CheckboxWidget(233, 377, 30, 10, 3, this, true)
     val darkLnk = CheckboxWidget(360, 377, 30, 10, 3, this)

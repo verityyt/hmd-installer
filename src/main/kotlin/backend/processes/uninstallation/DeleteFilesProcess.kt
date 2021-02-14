@@ -3,6 +3,7 @@ package backend.processes.uninstallation
 import backend.InstallationProperties
 import backend.Logger
 import backend.Process
+import backend.UninstallationProperties
 import java.io.File
 
 
@@ -11,7 +12,7 @@ class DeleteFilesProcess : Process() {
     /**
      * Installation directory of the hmd
      */
-    val folder = File(InstallationProperties.instDir)
+    var folder = File(UninstallationProperties.instDir)
 
     /**
      * HMD is installed
@@ -25,15 +26,19 @@ class DeleteFilesProcess : Process() {
 
     override fun run() {
         Logger.log("Testing process...", this.javaClass)
+        folder = File(UninstallationProperties.instDir)
         test = folder.exists()
         if (!test) {
-            throw Exception("Testing of 'DeleteFilesProcess' was not successful!")
+            println("${folder.absolutePath} doesn't exists ${folder.exists()}")
+            HMDInstaller.showError(400, "Testing of 'DeleteFilesProcess' was not successful!")
         } else {
             folder.deleteRecursively()
         }
 
         if (!folder.exists()) {
-            Logger.log("Zip file successfully extracted!", this.javaClass)
+            status = 1
+        }else {
+            HMDInstaller.showError(400, "Process 'DeleteFilesProcess' failed")
         }
 
     }

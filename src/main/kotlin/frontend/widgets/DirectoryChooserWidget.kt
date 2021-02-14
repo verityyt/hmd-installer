@@ -21,7 +21,8 @@ class DirectoryChooserWidget(
     private val h: Int,
     private val arc: Int,
     private val stroke: Int,
-    val parent: Screen
+    val parent: Screen,
+    val suffix: String = ""
 ) : Widget() {
 
     var text = ""
@@ -63,7 +64,7 @@ class DirectoryChooserWidget(
 
             val choice = chooser.showDialog(Window.window, "Select")
             if (choice == JFileChooser.APPROVE_OPTION) {
-                text = chooser.selectedFile.absolutePath + "\\Hardware Monitoring Display\\"
+                text = chooser.selectedFile.absolutePath + suffix
             }
 
         }
